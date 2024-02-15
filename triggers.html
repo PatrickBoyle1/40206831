@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/triggersStyle.css">
+</head>
+<body>
+    <header>
+        <img src="img/thoughtSnip.jpg" alt="Logo" id="logo">
+        <img src="img/Friends.png" class="trigger-img Social">
+        <img src="img/Gym.png" class="trigger-img Activity">
+        <img src="img/House.png" class="trigger-img Family">
+        <img src="img/Work.png" class="trigger-img Work">
+        <img src="img/Sleeping.png" class="trigger-img Sleep">
+        <img src="img/Sun.png" class="trigger-img Weather">
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/myprofile">My Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="social">
+            <h1>Social Interaction</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeSocial">
+            </div>
+            <p class="zero" id="bank22"></p>
+            <p class="half" id="bank23"></p>
+            <p class="full" id="bank24"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeSocial', 'Social')">Log</button>
+        </section>
+
+        <section class="activity">
+            <h1>Physcial Activity</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeActivity">
+            </div>
+            <p class="zero" id="bank25"></p>
+            <p class="half" id="bank26"></p>
+            <p class="full" id="bank27"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeActivity', 'Activity')">Log</button>
+        </section>
+
+        <section class="family">
+            <h1>Family</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeFamily">
+            </div>
+            <p class="zero" id="bank28"></p>
+            <p class="half" id="bank29"></p>
+            <p class="full" id="bank30"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeFamily', 'Family')">Log</button>
+        </section>
+        <section class="work">
+            <h1>Work</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeWork">
+            </div>
+            <p class="zero" id="bank31"></p>
+            <p class="half" id="bank32"></p>
+            <p class="full" id="bank33"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeWork', 'Work')">Log</button>
+        </section>
+        <section class="sleep">
+            <h1>Sleep</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeSleep">
+            </div>
+            <p class="zero" id="bank34"></p>
+            <p class="half" id="bank35"></p>
+            <p class="full" id="bank36"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeSleep', 'Sleep')">Log</button>
+        </section>
+        <section class="weather">
+            <h1>Weather</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeWeather">
+            </div>
+            <p class="zero" id="bank37"></p>
+            <p class="half" id="bank38"></p>
+            <p class="full" id="bank39"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeWeather', 'Weather')">Log</button>
+        </section>
+        
+
+    </div>
+    <script>
+        var locks = {
+            Social: false,
+            Activity: false,
+            Family: false,
+            Work: false,
+            Sleep: false,
+            Weather: false,
+        };
+
+        function toggleLock(sliderId, trigger) {
+            // Toggle the lock state
+            locks[trigger] = !locks[trigger];
+
+            // Get the slider and image
+            var slider = document.getElementById(sliderId);
+            var img = document.querySelector(".trigger-img." + trigger);
+
+            if (locks[trigger]) {
+                // If the slider is locked, disable it and reveal the image
+                slider.disabled = true;
+                img.style.opacity = 1;
+            } else {
+                // If the slider is unlocked, enable it and fade the image
+                slider.disabled = false;
+                img.style.opacity = 0.2;
+            }
+            printValuesIfAllLocked();
+        }
+
+
+
+        function printValuesIfAllLocked() {
+            // Check if all emotions are locked
+            var allLocked = Object.values(locks).every(val => val === true);
+
+            if (allLocked) {
+                // Get the scores for all emotions
+                var scores = {
+                    1: document.getElementById('myRangeSocial').value,  
+                    2: document.getElementById('myRangeActivity').value,   
+                    3: document.getElementById('myRangeFamily').value,    
+                    4: document.getElementById('myRangeWork').value,  
+                    5: document.getElementById('myRangeSleep').value,   
+                    6: document.getElementById('myRangeWeather').value,      
+                };
+                let logID = new URLSearchParams(window.location.search).get('logID');
+                fetch('/insertTriggers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ scores: scores, logID: logID })   // Include the scores in the request body
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message === 'Records inserted successfully') {
+                            // Redirect to the specified URL
+                            window.location.href = "/dashboard";
+                        } else {
+                            // If there was an error, log it to the console
+                            console.error('Error:', data.error);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+
+        function getRandomSentence(bank) {
+            // Pick a random sentence from the chosen bank
+            var sentence = bank[Math.floor(Math.random() * bank.length)];
+            return sentence;
+        }
+
+        fetch('sentences.json')  // Make sure the filename here matches your JSON file
+            .then(response => response.json())
+            .then(data => {
+                // Iterate over each bank
+                for (let i = 22; i <= 39; i++) {
+                    // Get the bank name
+                    let bankName = "bank" + i;
+                    // Check if the bank exists in the data
+                    if (data[bankName]) {
+                        // Update the <p> element with a random sentence from the corresponding bank
+                        document.getElementById(bankName).innerHTML = getRandomSentence(data[bankName]);
+                    }
+                }
+            });
+    </script>
+</body>
+</html>

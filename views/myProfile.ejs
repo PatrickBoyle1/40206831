@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="css/myProfileStyle.css">
+</head>
+<body>
+    <header>
+        <img src="img/thoughtSnip.jpg" alt="Logo" id="logo">
+         <h2>Welcome, <%= user.Username %>!</h2>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="#/myprofile">My Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="profile-info">
+    <h2>Username: <%= user.name %></h2>
+    <p>Email: <%= user.email %></p>
+    <p>Date Joined: <%= user.dateJoined %></p>
+    <p>Total Emotions logged: <%= user.totalEmotionsLogged %></p>
+    <p>Total Triggers Logged: <%= user.totalEmotionsLogged %></p>
+    <p>Average Emotions Score: <%= user.totalEmotionsLogged %></p>
+</div>
+</body>
+</html>r

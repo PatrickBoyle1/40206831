@@ -1,0 +1,273 @@
+{
+  "bank1": [
+    "You have just stepped on a Lego brick.",
+    "You have just spilled coffee on your laptop.",
+    "Spurs just won the league.",
+    "You have just missed your flight.",
+    "Theres no milk in the morning."
+  ],
+  "bank2": [
+    "Your favourite song just came on the radio.",
+    "You have just received a compliment.",
+    "The chef cooked your steak to perfection.",
+    "You have just found a tenner in your pocket.",
+    "You wake up and think its Monday, it isn't'."
+  ],
+  "bank3": [
+    "You win the a free holiday.",
+    "You have just adopted a cute puppy.",
+    "You got a great mark in Web Development.",
+    "You marry the love of your life.",
+    "Arsenal just won the league."
+  ],
+  "bank4": [
+    "You have just won the lottery.",
+    "You have just witnessed a beautiful sunset.",
+    "You have just achieved your dream goal.",
+    "You get ASOS student discount."
+  ],
+  "bank5": [
+    "You watched a sad movie.",
+    "You got a puncture.",
+    "You heard a TV show spoiler.",
+    "The Wi-Fi went out.",
+    "You phone is on 1%."
+  ],
+  "bank6": [
+    "You support Spurs.",
+    "You got a bad mark in Web Dev.",
+    "You need a new timing belt.",
+    "You just got nuked.",
+    "You got a bad haircut"
+  ],
+  "bank7": [
+    "Arsenal just beat Spurs.",
+    "You read a book.",
+    "You just ate food.",
+    "You had a nap.",
+    "You done some yoga."
+  ],
+  "bank8": [
+    "You burnt your toast.",
+    "You get a spam email.",
+    "You play monopoly.",
+    "You forgot your password.",
+    "You stub your toe."
+  ],
+  "bank9": [
+    "The BBQ is vegan only.",
+    "You win a trip...to North Korea.",
+    "You got stung by a bee.",
+    "Income tax just increased.",
+    "Spurs just beat Arsenal"
+  ],
+  "bank10": [
+    "You hug a friend.",
+    "You thank a teacher..",
+    "You enjoy a movie..",
+    "You eat a cake.",
+    "You play a game."
+  ],
+  "bank11": [
+    "You mock a rival.",
+    "You ignored a request.",
+    "You rolled your eyes.",
+    "You lied to someone.",
+    "Youcheat on a test."
+  ],
+  "bank12": [
+    "You spit on someone.",
+    "You insult someone's mum.",
+    "You sabotage someone's success.",
+    "You betrayed someone's trust.",
+    "You stole someone's work.'."
+  ],
+  "bank13": [
+    "You drank some water.",
+    "You wore a shirt.",
+    "You pet a dog.",
+    "You listened to music.",
+    "You smelled a flower."
+  ],
+  "bank14": [
+    "You drank some sour milk",
+    "You wore a dirty shirt.",
+    "You pet a wet dog",
+    "You listened to a bad song.",
+    "You smelled a garbage bin."
+  ],
+  "bank15": [
+    "You drank some rotten juice.",
+    "You meet a spurs fan.",
+    "You pet a dead rat.",
+    "You wet yourself.",
+    "You vomit on yourself."
+  ],
+  "bank16": [
+    "You go outside.",
+    "You watch a comedy show.",
+    "You drink some water.",
+    "You brush your teeth.",
+    "You get bought a coffee."
+  ],
+  "bank17": [
+    "You see a spider.",
+    "You miss a deadline.",
+    "You ride a rollercoaster",
+    "Your alarm doesnt go off."
+  ],
+  "bank18": [
+    "You are haunted by a ghost.",
+    "You witness a crime.",
+    "You get chased by a bear.",
+    "Your plane is about to crash.",
+    "You get hacked."
+  ],
+  "bank19": [
+    "You seen a car.",
+    "You seen a person.",
+    "You brushed your teeth.",
+    "You checked your phone.",
+    "It rained."
+  ],
+  "bank20": [
+    "You seen a shooting star",
+    "You get a spam email.",
+    "You get a phone call from an old friend.",
+    "You find a £20 note.",
+    "You hear a loud bang."
+  ],
+  "bank21": [
+    "You feel an earthquake.",
+    "You find out you have a twin.",
+    "You win the lottery.",
+    "You meet your favorite celebrity.",
+    "You get proposed to."
+  ],
+  "bank22": [
+    "You spent the day alone.",
+    "You didn't interact with anyone today.",
+    "You kept to yourself.",
+    "You avoided social interactions.",
+    "You had a quiet day."
+  ],
+  "bank23": [
+    "You had a chat with a friend.",
+    "You spent some time with your family.",
+    "You interacted with a few people.",
+    "You had a few social engagements.",
+    "You spent a moderate amount of time socializing."
+  ],
+  "bank24": [
+    "You attended a large gathering.",
+    "You spent the day with friends and family.",
+    "You were very socially active today.",
+    "You made new connections.",
+    "You were the life of the party."
+  ],
+  "bank25": [
+    "You didn't leave bed.",
+    "You sat at a desk for 12 hours.",
+    "You had a sedentary day.",
+    "You didn't get much exercise today.",
+    "You took it easy today."
+  ],
+  "bank26": [
+    "You went for a jog.",
+    "You went for a walk.",
+    "You did a moderate workout.",
+    "You were somewhat active today.",
+    "You got your body moving."
+  ],
+  "bank27": [
+    "You ran a marathon.",
+    "You live at the gym.",
+    "You did an intense workout.",
+    "You were very physically active today.",
+    "You pushed your physical limits."
+  ], 
+  "bank28": [
+    "You didn't spend much time with family today.",
+    "You had a quiet day at home alone.",
+    "You missed your family gathering.",
+    "You had minimal family interactions.",
+    "You had some alone time."
+  ],
+  "bank29": [
+    "You had dinner with your family.",
+    "You spent some quality family time",
+    "You had a nice chat with your parents.",
+    "You helped your kids with their homework.",
+    "You enjoyed a movie night with your family."
+  ],
+  "bank30": [
+    "You had a family reunion.",
+    "You spent the whole day with your family.",
+    "You went on a family trip.",
+    "You celebrated a family member's birthday.",
+    "You had a busy day filled with family activities."
+  ],
+  "bank31": [
+    "You took a day off work.",
+    "You had a light workload today.",
+    "You worked for just a few hours.",
+    "You didn't have many tasks to complete.",
+    "You enjoyed a relaxed day at work."
+  ],
+  "bank32": [
+    "You had a productive day at work.",
+    "You completed most of your tasks.",
+    "You had several meetings.",
+    "You worked your usual hours.",
+    "You made good progress on your projects."
+  ],
+  "bank33": [
+    "You worked overtime.",
+    "You had a very busy day at work.",
+    "You completed a major project.",
+    "You had back-to-back meetings.",
+    "You met a tight deadline."
+  ], 
+  "bank34": [
+    "You had trouble sleeping.",
+    "You stayed up late.",
+    "You woke up several times during the night.",
+    "You didn't get much rest.",
+    "You felt tired when you woke up."
+  ],
+  "bank35": [
+    "You had a decent night's sleep.",
+    "You slept for about 7 hours.",
+    "You woke up feeling somewhat refreshed.",
+    "You had a few dreams.",
+    "You slept without any disturbances."
+  ],
+  "bank36": [
+    "You had a great night's sleep.",
+    "You slept for more than 8 hours.",
+    "You woke up feeling refreshed.",
+    "You had a deep sleep.",
+    "You woke up feeling energized."
+  ], 
+  "bank37": [
+    "It was a gloomy day.",
+    "It rained all day.",
+    "It was very cold.",
+    "There was a thunderstorm.",
+    "It was a foggy day."
+  ],
+  "bank38": [
+    "It was a bit cloudy.",
+    "There was a light drizzle.",
+    "It was slightly chilly.",
+    "There was a gentle breeze.",
+    "It was partly sunny."
+  ],
+  "bank39": [
+    "It was a beautiful sunny day.",
+    "The weather was perfect.",
+    "It was warm and pleasant.",
+    "There was a clear blue sky.",
+    "It was a great day for outdoor activities."
+  ]
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Polar Area Chart</title>
+    <link rel="stylesheet" href="css/overviewStyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <img src="img/thoughtSnip.jpg" alt="Logo" id="logo">
+         <h2>Overview</h2>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/myprofile">My Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="chartContainer">
+        <canvas id="myChart"></canvas>
+    </div>
+
+
+    <div class="trigger-question">
+    <p>Would you like to log contextual triggers?</p>
+    <button class="btn" id="yesBtn">Yes</button>
+    <button class="btn" id="noBtn">No</button>
+</div>
+
+    <script>
+ let logID = new URLSearchParams(window.location.search).get('logID');
+fetch(`/getEmotionData?logID=${logID}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                labels: ['Enjoyment', 'Sadness', 'Anger', 'Contempt', 'Disgust', 'Fear', 'Surprise'],
+                datasets: [{
+                    data: data.emotionData.map(item => item.EmotionScore), // Use the fetched data
+                    backgroundColor: ['#FFDC7B', '#74A8DA', '#F2736D', '#BD678A', '#A390C4', '#30B575', '#36AED7']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // This allows the chart to resize
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Polar Area Chart'
+                    }
+                }
+            }
+        });
+
+        document.getElementById('noBtn').addEventListener('click', function() {
+            window.location.href = '/dashboard';
+        });
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            window.location.href = 'triggers.html?logID=' + logID;
+        });
+    })
+    .catch(error => console.error('Error:', error));
+
+    </script>
+</body>
+</html>
+
+
+

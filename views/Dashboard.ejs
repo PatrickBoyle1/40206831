@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/DashboardStyle.css">
+</head>
+<body>
+    <header>
+        <img src="img/thoughtSnip.jpg" alt="Logo" id="logo">
+         <h2 class="header-title">Welcome, <%= user.Username %>!</h2>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/myprofile">My Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+        
+    <div class="container">
+<div class="box">
+    
+    <a href="#" class="session" id="session1">
+        <p>Date: <span id="date1"></span></p>
+        <p>Average Score: <span id="score1"></span></p>
+    </a>
+    <a href="#" class="session" id="session2">
+        <p>Date: <span id="date2"></span></p>
+        <p>Average Score: <span id="score2"></span></p>
+    </a>
+    <a href="#" class="session" id="session3">
+        <p>Date: <span id="date3"></span></p>
+        <p>Average Score: <span id="score3"></span></p>
+    </a>
+    <a href="#" class="session" id="session4">
+        <p>Date: <span id="date4"></span></p>
+        <p>Average Score: <span id="score4"></span></p>
+    </a>
+    <a href="#" class="session" id="session5">
+        <p>Date: <span id="date5"></span></p>
+        <p>Average Score: <span id="score5"></span></p>
+    </a>
+    <button id="viewAll">View All</button>
+</div>
+        <div class="chart">
+            <canvas id="lineChart"></canvas>
+        </div>
+    </div>
+    <div class="btn">
+        <a href="emotion.html" id="logEmotions">Log Emotions</a>
+        </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

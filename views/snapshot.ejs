@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snapshot</title>
+    <link rel="stylesheet" href="css/snapshotStyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <img src="img/thoughtSnip.jpg" alt="Logo" id="logo">
+         <h2>Snapshot</h2>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/myprofile">My Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="chartContainer">
+    <canvas id="myChart1" class="chart"></canvas>
+    <canvas id="myChart2" class="chart"></canvas>
+</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+$(document).ready(function () {
+    // Get the logID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const logID = urlParams.get('logID');
+
+    $.get('/getSnapshotData?logID=' + logID, function (data) {
+        console.log(data);
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                labels: ['Enjoyment', 'Sadness', 'Anger', 'Contempt', 'Disgust', 'Fear', 'Surprise'],
+                datasets: [{
+                    data: data.map(item => item.EmotionScore), // Use the fetched data
+                    backgroundColor: ['#FFDC7B', '#74A8DA', '#F2736D', '#BD678A', '#A390C4', '#30B575', '#36AED7']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // This allows the chart to resize
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: false,
+                    }
+                }
+            }
+        });
+    }); // Closing for $.get()
+
+  $.get('/getTriggerData?logID=' + logID)
+        .done(function (data) {
+            var ctx = document.getElementById('myChart2').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['Social', 'Activity', 'Family', 'Work', 'Sleep', 'Weather'],
+                    datasets: [{
+                        data: data.map(item => item.TriggerScore), // Use the fetched data
+                        backgroundColor: ['#f3929b', '#f5ac4e', '#f6f082', '#a3f9b6', '#9ad0f9', '#ECD4FF']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // This allows the chart to resize
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: false,
+                        }
+                    }
+                }
+            });
+
+            // Create a div to hold the new buttons
+            let newButtonDiv = $("<div id='newButtonDiv'></div>");
+
+            // Define the button texts
+            let newButtonTexts = ['Delete Log', 'Edit Emotions', 'Edit Trigger'];
+
+            // Create three new buttons
+            for (let i = 0; i < newButtonTexts.length; i++) {
+                let newButton = $("<button class='btn'>" + newButtonTexts[i] + "</button>");
+                newButtonDiv.append(newButton);
+
+                // Add a click event listener to the new button
+                newButton.click(function() {
+                  if (i === 0) {
+                        // Code for the first button
+                        $.ajax({
+                            url: '/deleteData',
+                            type: 'POST',
+                            data: { logID: logID },
+                            success: function(response) {
+                                console.log(response);
+                                // Redirect to dashboard or refresh the page
+                                window.location.href = '/dashboard';
+                            },
+                            error: function(err) {
+                                console.error(err);
+                            }
+                        });
+                    } else if (i === 1) {
+                        window.location.href = 'EditLog.html?logID=' + logID;
+                    } else if (i === 2) {
+                       window.location.href = 'EditTriggers.html?logID=' + logID;
+                    }
+                });
+            }
+
+            // Append the div to some container
+            $("body").append(newButtonDiv);
+        })
+        .fail(function () {
+            // Create a div to hold the buttons
+            let buttonDiv = $("<div id='buttonDiv'></div>");
+
+            // Define the button texts
+            let buttonTexts = ['Delete Log', 'Edit Emotions', 'Add Triggers'];
+
+            // Create three buttons
+            for (let i = 0; i < buttonTexts.length; i++) {
+                let button = $("<button class='btn'>" + buttonTexts[i] + "</button>");
+                buttonDiv.append(button);
+
+                // Add a click event listener to the button
+                button.click(function() {
+                    if (i === 0) {
+                        // Code for the first button
+                        $.ajax({
+                            url: '/deleteData',
+                            type: 'POST',
+                            data: { logID: logID },
+                            success: function(response) {
+                                console.log(response);
+                                // Redirect to dashboard or refresh the page
+                                window.location.href = '/dashboard';
+                            },
+                            error: function(err) {
+                                console.error(err);
+                            }
+                        });
+                    } else if (i === 1) {
+                        window.location.href = 'EditLog.html?logID=' + logID;
+                    } else if (i === 2) {
+                       window.location.href = 'triggers.html?logID=' + logID;
+                    }
+                });
+            }
+
+            // Append the div to some container
+            $("body").append(buttonDiv);
+        });
+}); // Closing for $(document).ready()
+    </script>
+</body>
+</html>

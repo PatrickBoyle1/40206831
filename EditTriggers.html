@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thought - Edit Log</title>
+    <link rel="stylesheet" href="css/EditTriggersStyle.css">
+</head>
+<body>
+    <header>
+        <img src="img/thoughtSnip.jpg" alt="Logo" id="logo">
+        <h2>Edit Emotional Triggers</h2>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/myprofile">My Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Social</h1>
+        <div class="slider-container">
+            <input type="range" min="1" max="100" value="51" class="slider" id="myRange1">
+        </div>
+        <h1>Activity</h1>
+        <div class="slider-container">
+            <input type="range" min="1" max="100" value="51" class="slider" id="myRange2">
+        </div>
+        <h1>Family</h1>
+        <div class="slider-container">
+            <input type="range" min="1" max="100" value="51" class="slider" id="myRange3">
+        </div>
+        <h1>Work</h1>
+        <div class="slider-container">
+            <input type="range" min="1" max="100" value="51" class="slider" id="myRange4">
+        </div>
+        <h1>Sleep</h1>
+        <div class="slider-container">
+            <input type="range" min="1" max="100" value="51" class="slider" id="myRange5">
+        </div>
+        <h1>Weather</h1>
+        <div class="slider-container">
+            <input type="range" min="1" max="100" value="51" class="slider" id="myRange6">
+        </div>
+        <button class="btn">Submit</button>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let urlParams = new URLSearchParams(window.location.search);
+            let logID = urlParams.get('logID');
+
+            $.get('/getTriggerData', { logID: logID }, function (data) {
+                data.forEach(function (emotionData) {
+                    let emotionID = emotionData.EmotionID;
+                    let emotionScore = emotionData.EmotionScore;
+                    $('#myRange' + emotionID).val(emotionScore);
+                });
+            });
+
+            $('.btn').click(function () {
+                let scores = { logID: logID };
+                for (let emotionID = 1; emotionID <= 7; emotionID++) {
+                    scores[emotionID] = $('#myRange' + emotionID).val();
+                }
+
+                $.post('/updateTriggers', scores, function (data) {
+                    console.log(data.message); // Log the server response
+                    if (data.message === 'Records updated successfully') {
+                        window.location.href = '/snapshot?logID=' + logID;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

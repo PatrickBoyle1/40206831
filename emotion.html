@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/emotionStyle.css">
+</head>
+<body>
+    <header>
+        <img src="img/thoughtSnip.jpg" alt="Logo" id="logo">
+        <img src="img/enjoymentEmoji.JPG" class="emotion-img Enjoyment">
+        <img src="img/sadnessEmoji.JPG" class="emotion-img Sadness">
+        <img src="img/angerEmoji.JPG" class="emotion-img Anger">
+        <img src="img/contemptEmoji.JPG" class="emotion-img Contempt">
+        <img src="img/disgustEmoji.JPG" class="emotion-img Disgust">
+        <img src="img/fearEmoji.JPG" class="emotion-img Fear">
+        <img src="img/surpriseEmoji.JPG" class="emotion-img Surprise">
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/myprofile">My Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="enjoyment">
+            <h1>Enjoyment</h1>
+
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeEnjoyment">
+            </div>
+            <p class="zero" id="bank1"></p>
+            <p class="half" id="bank2"></p>
+            <p class="full" id="bank3"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeEnjoyment', 'Enjoyment')">Log Mood</button>
+        </section>
+
+        <section class="sadness">
+            <h1>Sadness</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeSadness">
+            </div>
+            <p class="zero" id="bank4"></p>
+            <p class="half" id="bank5"></p>
+            <p class="full" id="bank6"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeSadness', 'Sadness')">Log Mood</button>
+        </section>
+
+        <section class="anger">
+            <h1>Anger</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeAnger">
+            </div>
+            <p class="zero" id="bank7"></p>
+            <p class="half" id="bank8"></p>
+            <p class="full" id="bank9"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeAnger', 'Anger')">Log Mood</button>
+        </section>
+        <section class="contempt">
+            <h1>Contempt</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeContempt">
+            </div>
+            <p class="zero" id="bank10"></p>
+            <p class="half" id="bank11"></p>
+            <p class="full" id="bank12"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeContempt', 'Contempt')">Log Mood</button>
+        </section>
+        <section class="disgust">
+            <h1>Disgust</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeDisgust">
+            </div>
+            <p class="zero" id="bank13"></p>
+            <p class="half" id="bank14"></p>
+            <p class="full" id="bank15"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeDisgust', 'Disgust')">Log Mood</button>
+        </section>
+        <section class="fear">
+            <h1>Fear</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeFear">
+            </div>
+            <p class="zero" id="bank16"></p>
+            <p class="half" id="bank17"></p>
+            <p class="full" id="bank18"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeFear', 'Fear')">Log Mood</button>
+        </section>
+        <section class="surprise">
+            <h1>Surprise</h1>
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="51" class="slider" id="myRangeSurprise">
+            </div>
+            <p class="zero" id="bank19"></p>
+            <p class="half" id="bank20"></p>
+            <p class="full" id="bank21"></p>
+            <button class="lock-button" onclick="toggleLock('myRangeSurprise', 'Surprise')">Log Mood</button>
+        </section>
+
+    </div>
+    <script>
+            var locks = {
+                Enjoyment: false,
+                Sadness: false,
+                Anger: false,
+                Contempt: false,
+                Disgust: false,
+                Fear: false,
+                Surprise: false
+            };
+
+            function toggleLock(sliderId, emotion) {
+                // Toggle the lock state
+                locks[emotion] = !locks[emotion];
+
+                // Get the slider and image
+                var slider = document.getElementById(sliderId);
+                var img = document.querySelector(".emotion-img." + emotion);
+
+                if (locks[emotion]) {
+                    // If the slider is locked, disable it and reveal the image
+                    slider.disabled = true;
+                    img.style.opacity = 1;
+                } else {
+                    // If the slider is unlocked, enable it and fade the image
+                    slider.disabled = false;
+                    img.style.opacity = 0.2;
+                }
+                printValuesIfAllLocked();
+            }
+        function printValuesIfAllLocked() {
+            // Check if all emotions are locked
+            var allLocked = Object.values(locks).every(val => val === true);
+
+            if (allLocked) {
+                // Get the scores for all emotions
+                var scores = {
+                    1: document.getElementById('myRangeEnjoyment').value,  // Enjoyment
+                    2: document.getElementById('myRangeSadness').value,   // Sadness
+                    3: document.getElementById('myRangeAnger').value,     // Anger
+                    4: document.getElementById('myRangeContempt').value,  // Contempt
+                    5: document.getElementById('myRangeDisgust').value,   // Disgust
+                    6: document.getElementById('myRangeFear').value,      // Fear
+                    7: document.getElementById('myRangeSurprise').value   // Surprise
+                };
+                // Send a POST request to the server
+            fetch('/insertEmotionRecord', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                    body: JSON.stringify(scores)  // Include the scores in the request body
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Records inserted successfully') {
+                        // Redirect to the overview page with logID
+                        window.location.href = "/overview?logID=" + data.logID;
+                    } else {
+                        // If there was an error, log it to the console
+                        console.error('Error:', data.error);
+                    }
+                })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+
+
+            function getRandomSentence(bank) {
+                // Pick a random sentence from the chosen bank
+                var sentence = bank[Math.floor(Math.random() * bank.length)];
+                return sentence;
+            }
+
+            fetch('sentences.json')  // Make sure the filename here matches your JSON file
+                .then(response => response.json())
+                .then(data => {
+                    // Iterate over each bank
+                    for (let i = 1; i <= 21; i++) {
+                        // Get the bank name
+                        let bankName = "bank" + i;
+                        // Check if the bank exists in the data
+                        if (data[bankName]) {
+                            // Update the <p> element with a random sentence from the corresponding bank
+                            document.getElementById(bankName).innerHTML = getRandomSentence(data[bankName]);
+                        }
+                    }
+                });
+    </script>
+</body>
+</html>
