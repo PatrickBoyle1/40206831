@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -70,12 +68,12 @@ body::before {
     display: flex;
     justify-content: space-around;
     padding-left: 10px;
-    margin-top: 150px; /* Adjusted to push the container below the header */
+    margin-top: 150px;
 }
 
 .box, .chart {
     background: white;
-    border: 1px solid black;
+    border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     height: 600px;
 }
@@ -87,7 +85,66 @@ body::before {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}                                                                   
+}
+
+.box-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.session {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    padding: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+    flex-grow: 1;
+}
+
+
+    .session:hover {
+        opacity: 0.7;
+    }
+
+#session1 {
+    background-color: #ffcccc;
+}
+
+#session2 {
+    background-color: #ccffcc;
+}
+
+#session3 {
+    background-color: #ccccff;
+}
+
+#session4 {
+    background-color: #ffffcc;
+}
+
+#session5 {
+    background-color: #ccffff;
+}
+
+#viewAll {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color: #f8f8f8;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    #viewAll:hover {
+        background-color: #e7e7e7;
+    }
 
 .chart {
     flex: 1;
@@ -121,75 +178,5 @@ body::before {
     justify-content: space-around; /* Added to center the log button */
     margin-top: 50px;
 }
-.box {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-}
 
-.box-title {
-    order: 1;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    font-size: 1.2em;
-    color: #333;
-}
 
-.session {
-    display: flex;
-    border-bottom: 1px solid #ddd;
-    padding: 25px;
-    text-decoration: none;
-    color: #333;
-    transition: background-color 0.3s ease;
-}
-
-    .session:hover {
-        opacity: 0.7;
-    }
-
-    .session:last-child {
-        border-bottom: none;
-    }
-
-#session1 {
-    background-color: #ffcccc;
-}
-
-#session2 {
-    background-color: #ccffcc;
-}
-
-#session3 {
-    background-color: #ccccff;
-}
-
-#session4 {
-    background-color: #ffffcc;
-}
-
-#session5 {
-    background-color: #ccffff;
-}
-
-#viewAll {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    display: block;
-    margin: 0 auto;
-    width: 50%;
-    cursor: pointer;
-    color: #333;
-    transition: background-color 0.3s ease;
-}
-
-    #viewAll:hover {
-        background-color: #e7e7e7;
-    }

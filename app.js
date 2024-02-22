@@ -8,9 +8,9 @@ const app = express();
 const async = require('async');
 
 app.use(morgan('tiny'));
-app.use(express.static(__dirname)); // Serve static files from the root directory
+app.use(express.static(__dirname));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); // Add this line to parse JSON request bodies
+app.use(express.json()); 
 
 app.use(session({
     secret: 'patrick',
@@ -24,18 +24,28 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/getStarted.html'));
 });
 
+const crypto = require('crypto');
+const config = require('./config.js');
+const pepper = config.pepper;
+
+function hashPassword(password, salt) {
+    return crypto.createHash('sha256').update(password + salt + pepper).digest('hex');
+}
+
 app.post('/createAccount', (req, res) => {
     const { username, email, password } = req.body;
-    const query = `INSERT INTO users (username, email, password) VALUES (?, ?, ?)`;
+    const salt = crypto.randomBytes(16).toString('hex');
+    const hashedPassword = hashPassword(password, salt);
+    const query = `INSERT INTO users (username, email, password, salt) VALUES (?, ?, ?, ?)`;
 
-    conn.query(query, [username, email, password], (err, results) => {
+    conn.query(query, [username, email, hashedPassword, salt], (err, results) => {
         if (err) {
             console.log('Error:', err);
             res.status(500).send('Error creating account: ' + err.message);
         } else {
-            console.log('Account created successfully');
+            console.log('Account created successfully', results);
             // Query the newly created user
-            conn.query(`SELECT * FROM users WHERE username = ? AND password = ?`, [username, password], (err, results) => {
+            conn.query(`SELECT * FROM users WHERE username = ? AND password = ?`, [username, hashedPassword], (err, results) => {
                 if (err) {
                     console.log('Error:', err);
                     res.status(500).send('Error logging in: ' + err.message);
@@ -55,30 +65,40 @@ app.post('/createAccount', (req, res) => {
     });
 });
 
-
-
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
+    const query = `SELECT * FROM users WHERE username = ?`;
 
-    const query = `SELECT * FROM users WHERE username = ? AND password = ?`;
-
-    conn.query(query, [username, password], (err, results) => {
+    conn.query(query, [username], (err, results) => {
         if (err) {
-            console.log('Error:', err);
+            console.error('Error during login:', err);
             res.send('Error logging in');
         } else {
             if (results.length > 0) {
-                // If the user is authenticated, save their data in the session
-                req.session.user = results[0];
-                console.log('Login successful');
-                res.render('dashboard', { user: req.session.user });
+                const user = results[0];
+               
+                const hashedPassword = hashPassword(password, user.salt);
+               
+                const passwordMatch = hashedPassword === user.Password; // Compare with the stored password with correct case
+
+                if (passwordMatch) {
+                    // If the user is authenticated, save their data in the session
+                    req.session.user = user;
+                    console.log('Login successful');
+                    res.render('dashboard', { user: req.session.user });
+                } else {
+                    console.warn('Invalid password for user:', username);
+                    res.send('Invalid username/password');
+                }
             } else {
-                console.log('Invalid username/password');
+                console.warn('No user found with username:', username);
                 res.send('Invalid username/password');
             }
         }
     });
 });
+
+
 
 app.post('/insertEmotionRecord', async (req, res) => {
     const scores = req.body;
