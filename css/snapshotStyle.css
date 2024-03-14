@@ -58,9 +58,9 @@ body::before {
     height: 100%;
     width: 100%;
     z-index: -1;
-    background: linear-gradient(to right, #FFC0CB, /* Light Pink */
-    #ADD8E6, /* Light Blue */
-    #90EE90 /* Light Green */
+    background: linear-gradient(to right, #FFC0CB, 
+    #ADD8E6, 
+    #90EE90 
     );
 }
 
@@ -74,14 +74,14 @@ body {
 }
 
 #chartContainer {
-    width: 40%; /* Adjust this value to make the chart smaller or larger */
-    height: 70%; /* Adjust this value to make the chart smaller or larger */
-    display: flex; /* This will create a flex container */
-    justify-content: space-around; /* This will put space between your charts */
+    width: 40%; 
+    height: 70%; 
+    display: flex; 
+    justify-content: space-around; 
 }
 
 .chart {
-    width: 50%; /* This will make each chart take up 45% of the container's width */
+    width: 50%; 
     height: 100%;
 }
 
@@ -91,10 +91,10 @@ body {
 }
 
 #buttonDiv {
-    position: absolute; /* This will allow you to position the div anywhere on the page */
+    position: absolute; 
     margin-left: 40%;
-    display: flex; /* This will create a flex container */
-    flex-direction: column; /* This will make the buttons stack vertically */
+    display: flex; 
+    flex-direction: column; 
 }
 
 
@@ -104,12 +104,12 @@ body {
     font-size: 28px;
     border: none;
     border-radius: 5px;
-    background-color: #FFDC7B; /* Adjust this to match your color scheme */
+    background-color: #FFDC7B; 
     color: #000;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
     .btn:hover {
-        background-color: #F2736D; /* Adjust this to match your color scheme */
+        background-color: #F2736D; 
     }

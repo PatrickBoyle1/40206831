@@ -58,9 +58,9 @@ body::before {
     height: 100%;
     width: 100%;
     z-index: -1;
-    background: linear-gradient(to right, #FFC0CB, /* Light Pink */
-    #ADD8E6, /* Light Blue */
-    #90EE90 /* Light Green */
+    background: linear-gradient(to right, #FFC0CB, 
+    #ADD8E6, 
+    #90EE90 
     );
 }
 
@@ -76,14 +76,14 @@ body::before {
 }
 
 .slider-container {
-    width: 100%; /* Full width to center the slider */
-    display: flex; /* Use flexbox to center the slider */
-    justify-content: center; /* Center the slider horizontally */
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
 }
 
 .slider {
     -webkit-appearance: none;
-    width: 98.5%; /* Set the width of the slider */
+    width: 98.5%; 
     height: 35px;
     border-radius: 5px;
     background: #fff;

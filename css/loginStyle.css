@@ -21,9 +21,9 @@ body::before {
     height: 100%;
     width: 100%;
     z-index: -1;
-    background: linear-gradient(to right, #FFC0CB, /* Light Pink */
-    #ADD8E6, /* Light Blue */
-    #90EE90 /* Light Green */
+    background: linear-gradient(to right, #FFC0CB, 
+    #ADD8E6, 
+    #90EE90 
     );
 }
 header {

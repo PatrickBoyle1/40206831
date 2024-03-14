@@ -45,9 +45,9 @@ body::before {
     height: 100%;
     width: 100%;
     z-index: -1;
-    background: linear-gradient(to right, #FFC0CB, /* Light Pink */
-    #ADD8E6, /* Light Blue */
-    #90EE90 /* Light Green */
+    background: linear-gradient(to right, #FFC0CB, 
+    #ADD8E6, 
+    #90EE90 
     );
 }
 
@@ -73,23 +73,23 @@ body {
 .thought-img {
     mix-blend-mode: multiply;
     
-    height: 750px; /* This will maintain the aspect ratio */
+    height: 750px; 
 }
 
 .start-btn {
     padding: 20px 40px;
-    font-size: 30px; /* Larger font size */
-    background-color: #FF6347; /* Contrasting color */
+    font-size: 30px; 
+    background-color: #FF6347; 
     color: white;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a drop shadow */
-    animation: pulse 2s infinite; /* Add a pulse animation */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    animation: pulse 2s infinite; 
 }
 
-/* Define the pulse animation */
+
 @keyframes pulse {
     0% {
         transform: scale(1);

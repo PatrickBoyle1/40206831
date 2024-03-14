@@ -58,9 +58,9 @@ body::before {
     height: 100%;
     width: 100%;
     z-index: -1;
-    background: linear-gradient(to right, #FFC0CB, /* Light Pink */
-    #ADD8E6, /* Light Blue */
-    #90EE90 /* Light Green */
+    background: linear-gradient(to right, #FFC0CB, 
+    #ADD8E6, 
+    #90EE90 
     );
 }
 
@@ -74,8 +74,8 @@ body {
 }
 
 #chartContainer {
-    width: 70%; /* Adjust this value to make the chart smaller or larger */
-    height: 70%; /* Adjust this value to make the chart smaller or larger */
+    width: 70%;
+    height: 70%; 
 }
 
 #myChart {
@@ -96,13 +96,13 @@ body {
     font-size: 28px;
     border: none;
     border-radius: 5px;
-    background-color: #FFDC7B; /* Adjust this to match your color scheme */
+    background-color: #FFDC7B; 
     color: #000;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
     .btn:hover {
-        background-color: #F2736D; /* Adjust this to match your color scheme */
+        background-color: #F2736D; 
     }
 

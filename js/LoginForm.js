@@ -33,8 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".form__input").forEach(inputElement => {
         inputElement.addEventListener("blur", e => {
-            if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 10) {
-                setInputError(inputElement, "Username must be at least 10 characters in length");
+            if (e.target.id === "signupEmail" && !e.target.value.includes("@")) {
+                setInputError(inputElement, "Email must include '@'");
+            }
+
+            if (e.target.id === "signupPassword" && !/\d/.test(e.target.value)) {
+                setInputError(inputElement, "Password must include a number");
             }
         });
 
@@ -44,37 +48,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-    loginForm.addEventListener("submit", e => {
-        e.preventDefault();
+loginForm.addEventListener("submit", e => {
+    e.preventDefault();
 
-        // Get the username and password from the form
-        const username = loginForm.elements.username.value;
-        const password = loginForm.elements.password.value;
+    const email = loginForm.elements.email.value;
+    const password = loginForm.elements.password.value;
 
-        // Create the request body
-        const requestBody = JSON.stringify({ username, password });
+    if (!email.includes("@")) {
+        setInputError(loginForm.elements.email, "Email must include '@'");
+        return;
+    }
 
-        // Send a POST request to the /login route
-        fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: requestBody
+    if (!/\d/.test(password)) {
+        setInputError(loginForm.elements.password, "Password must include a number");
+        return;
+    }
+
+    const requestBody = JSON.stringify({ email, password });
+
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: requestBody
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = '/Dashboard.html';
+            } else {
+                setFormMessage(loginForm, "error", data.message);
+            }
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // If the login was successful, redirect to the dashboard
-                    window.location.href = '/Dashboard.html';
-                } else {
-                    // If there was an error, display it on the form
-                    setFormMessage(loginForm, "error", data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                setFormMessage(loginForm, "error", "An error occurred while logging in");
-            });
-    });
+        .catch(error => {
+            console.error('Error:', error);
+            setFormMessage(loginForm, "error", "An error occurred while logging in");
+        });
+});
+
 

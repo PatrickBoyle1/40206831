@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/emotionStyle.css">
+    <link rel="stylesheet" href="/css/emotionStyle.css">
 </head>
 <body>
     <header>
-        <img src="img/thoughtSnip.jpg" alt="Logo" id="logo">
-        <img src="img/enjoymentEmoji.JPG" class="emotion-img Enjoyment">
-        <img src="img/sadnessEmoji.JPG" class="emotion-img Sadness">
-        <img src="img/angerEmoji.JPG" class="emotion-img Anger">
-        <img src="img/contemptEmoji.JPG" class="emotion-img Contempt">
-        <img src="img/disgustEmoji.JPG" class="emotion-img Disgust">
-        <img src="img/fearEmoji.JPG" class="emotion-img Fear">
-        <img src="img/surpriseEmoji.JPG" class="emotion-img Surprise">
+        <img src="/img/thoughtSnip.jpg" alt="Logo" id="logo">
+        <img src="/img/enjoymentEmoji.JPG" class="emotion-img Enjoyment">
+        <img src="/img/sadnessEmoji.JPG" class="emotion-img Sadness">
+        <img src="/img/angerEmoji.JPG" class="emotion-img Anger">
+        <img src="/img/contemptEmoji.JPG" class="emotion-img Contempt">
+        <img src="/img/disgustEmoji.JPG" class="emotion-img Disgust">
+        <img src="/img/fearEmoji.JPG" class="emotion-img Fear">
+        <img src="/img/surpriseEmoji.JPG" class="emotion-img Surprise">
         <nav>
             <ul>
                 <li><a href="/dashboard">Home</a></li>
@@ -113,54 +113,54 @@
             };
 
             function toggleLock(sliderId, emotion) {
-                // Toggle the lock state
+              
                 locks[emotion] = !locks[emotion];
 
-                // Get the slider and image
+                
                 var slider = document.getElementById(sliderId);
                 var img = document.querySelector(".emotion-img." + emotion);
 
                 if (locks[emotion]) {
-                    // If the slider is locked, disable it and reveal the image
+                 
                     slider.disabled = true;
                     img.style.opacity = 1;
                 } else {
-                    // If the slider is unlocked, enable it and fade the image
+               e
                     slider.disabled = false;
                     img.style.opacity = 0.2;
                 }
                 printValuesIfAllLocked();
             }
         function printValuesIfAllLocked() {
-            // Check if all emotions are locked
+         
             var allLocked = Object.values(locks).every(val => val === true);
 
             if (allLocked) {
-                // Get the scores for all emotions
+             
                 var scores = {
-                    1: document.getElementById('myRangeEnjoyment').value,  // Enjoyment
-                    2: document.getElementById('myRangeSadness').value,   // Sadness
-                    3: document.getElementById('myRangeAnger').value,     // Anger
-                    4: document.getElementById('myRangeContempt').value,  // Contempt
-                    5: document.getElementById('myRangeDisgust').value,   // Disgust
-                    6: document.getElementById('myRangeFear').value,      // Fear
-                    7: document.getElementById('myRangeSurprise').value   // Surprise
+                    1: document.getElementById('myRangeEnjoyment').value, 
+                    2: document.getElementById('myRangeSadness').value,   
+                    3: document.getElementById('myRangeAnger').value,     
+                    4: document.getElementById('myRangeContempt').value,  
+                    5: document.getElementById('myRangeDisgust').value,   
+                    6: document.getElementById('myRangeFear').value,      
+                    7: document.getElementById('myRangeSurprise').value   
                 };
-                // Send a POST request to the server
+              
             fetch('/insertEmotionRecord', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                    body: JSON.stringify(scores)  // Include the scores in the request body
+                    body: JSON.stringify(scores)  
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.message === 'Records inserted successfully') {
-                        // Redirect to the overview page with logID
+                        
                         window.location.href = "/overview?logID=" + data.logID;
                     } else {
-                        // If there was an error, log it to the console
+                      
                         console.error('Error:', data.error);
                     }
                 })
@@ -170,21 +170,21 @@
 
 
             function getRandomSentence(bank) {
-                // Pick a random sentence from the chosen bank
+          
                 var sentence = bank[Math.floor(Math.random() * bank.length)];
                 return sentence;
             }
 
-            fetch('sentences.json')  // Make sure the filename here matches your JSON file
+            fetch('/json/sentences.json') 
                 .then(response => response.json())
                 .then(data => {
-                    // Iterate over each bank
+                 
                     for (let i = 1; i <= 21; i++) {
-                        // Get the bank name
+                    
                         let bankName = "bank" + i;
-                        // Check if the bank exists in the data
+                       
                         if (data[bankName]) {
-                            // Update the <p> element with a random sentence from the corresponding bank
+                       
                             document.getElementById(bankName).innerHTML = getRandomSentence(data[bankName]);
                         }
                     }

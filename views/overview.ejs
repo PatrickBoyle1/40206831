@@ -40,13 +40,13 @@ fetch(`/getEmotionData?logID=${logID}`)
             data: {
                 labels: ['Enjoyment', 'Sadness', 'Anger', 'Contempt', 'Disgust', 'Fear', 'Surprise'],
                 datasets: [{
-                    data: data.emotionData.map(item => item.EmotionScore), // Use the fetched data
+                    data: data.emotionData.map(item => item.EmotionScore),
                     backgroundColor: ['#FFDC7B', '#74A8DA', '#F2736D', '#BD678A', '#A390C4', '#30B575', '#36AED7']
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // This allows the chart to resize
+                maintainAspectRatio: false, 
                 plugins: {
                     legend: {
                         position: 'top',
@@ -63,7 +63,7 @@ fetch(`/getEmotionData?logID=${logID}`)
             window.location.href = '/dashboard';
         });
         document.getElementById('yesBtn').addEventListener('click', function() {
-            window.location.href = 'triggers.html?logID=' + logID;
+            window.location.href = 'html/triggers.html?logID=' + logID;
         });
     })
     .catch(error => console.error('Error:', error));

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thought - Edit Log</title>
-    <link rel="stylesheet" href="css/EditTriggersStyle.css">
+    <link rel="stylesheet" href="/css/EditTriggersStyle.css">
 </head>
 <body>
     <header>
-        <img src="img/thoughtSnip.jpg" alt="Logo" id="logo">
+        <img src="/img/thoughtSnip.jpg" alt="Logo" id="logo">
         <h2>Edit Emotional Triggers</h2>
         <nav>
             <ul>
@@ -66,7 +66,7 @@
                 }
 
                 $.post('/updateTriggers', scores, function (data) {
-                    console.log(data.message); // Log the server response
+                    console.log(data.message); 
                     if (data.message === 'Records updated successfully') {
                         window.location.href = '/snapshot?logID=' + logID;
                     }

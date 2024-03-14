@@ -167,14 +167,14 @@ h1 {
     text-align: center;
     line-height: 200px;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.5); /* semi-transparent white background */
-    color: #333333; /* dark text */
-    border: 2px solid #333333; /* dark border */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* subtle shadow */
+    background: rgba(255, 255, 255, 0.5); 
+    color: #333333; 
+    border: 2px solid #333333; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
 }
 
     .lock-button:hover {
-        background: rgba(100, 100, 100, 0.3); /* semi-transparent dark background on hover */
-        color: #ffffff; /* white text on hover */
-        border-color: #ffffff; /* white border on hover */
+        background: rgba(100, 100, 100, 0.3); 
+        color: #ffffff; 
+        border-color: #ffffff; 
     }
